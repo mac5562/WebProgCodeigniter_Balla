@@ -14,10 +14,26 @@
  * adatbázisban hoz létre egy táblát amiben adatokat tárolunk majd.
  * a kontroller a kezelő funkciókat biztosít böngészőn keresztül
  */
-class Employees {
+class Employees extends CI_Controller{
     
+    public function __construct(): void {
+        parent::__construct();
+        
+        
+        //employees model példányosítás lényegében
+        
+        $this->load->model('Employees_Model');
+        
+        
+    }
+
+
     public function list(){
         echo "list";
+        //van egy employees tábla
+        //list hívása esetén listázzuk ki a tábla tartalmát
+        $records = $this->Employees_Model>get_list();
+        
     }
     
     public function add(){
