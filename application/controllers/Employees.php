@@ -16,13 +16,13 @@
  */
 class Employees extends CI_Controller{
     
-    public function __construct(): void {
+    public function __construct(){
         parent::__construct();
         
         
         //employees model példányosítás lényegében
         
-        $this->load->model('Employees_Model');
+        $this->load->model('Employees_model');
         
         
     }
@@ -32,7 +32,9 @@ class Employees extends CI_Controller{
         echo "list";
         //van egy employees tábla
         //list hívása esetén listázzuk ki a tábla tartalmát
-        $records = $this->Employees_Model>get_list();
+        $records = $this->Employees_model->get_list();
+        var_dump($this->Employees_model);
+        print_r($records);
         
     }
     
