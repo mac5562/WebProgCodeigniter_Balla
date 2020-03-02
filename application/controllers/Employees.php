@@ -29,13 +29,15 @@ class Employees extends CI_Controller{
 
 
     public function list(){
-        echo "list";
+        //echo "list";
         //van egy employees tábla
         //list hívása esetén listázzuk ki a tábla tartalmát
         $records = $this->Employees_model->get_list();
-        var_dump($this->Employees_model);
-        print_r($records);
-        //ezt most itt megjavítom
+        
+        //felhelyezek egy nézetet és odaadom a listát megjeleníteni
+        $view_data = ['employees' => $records];
+        
+        $this->load->view('employees/list', $view_data);
     }
     
     public function add(){
