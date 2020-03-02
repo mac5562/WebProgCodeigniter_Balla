@@ -35,7 +35,7 @@ class Employees extends CI_Controller{
         $records = $this->Employees_model->get_list();
         var_dump($this->Employees_model);
         print_r($records);
-        
+        //ezt most itt megjavítom
     }
     
     public function add(){
