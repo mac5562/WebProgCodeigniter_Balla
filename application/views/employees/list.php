@@ -1,3 +1,6 @@
+<?php echo anchor(base_url('employees/add'), 'Új dolgozó hozzáadása'); ?>
+
+
 <?php
 
 /* 
@@ -16,6 +19,7 @@ if($employees == NULL || empty($employees)): ?>
             <th>Név</th>
             <th>SSN</th>
             <th>TIN</th>
+            <th>Műveletek</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +29,11 @@ if($employees == NULL || empty($employees)): ?>
             <td><?=$emp->name?></td>
             <td><?=$emp->ssn?></td>
             <td><?=$emp->tin?></td>
+            <td>
+                <?php echo anchor(base_url('employees/edit'.$emp->id), 'Szerkeszt')?>
+                <?php echo anchor(base_url('employees/delete/'.$emp->id), 'Töröl')?>
+            </td>
+            
         </tr>
         <?php         endforeach; ?>
     </tbody>
