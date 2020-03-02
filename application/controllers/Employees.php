@@ -36,7 +36,7 @@ class Employees extends CI_Controller{
         
         //felhelyezek egy nézetet és odaadom a listát megjeleníteni
         $view_data = ['employees' => $records];
-        
+        $this->load->helper('url');
         $this->load->view('employees/list', $view_data);
     }
     
