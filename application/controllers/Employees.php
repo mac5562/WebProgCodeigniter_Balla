@@ -41,6 +41,32 @@ class Employees extends CI_Controller{
     }
     
     public function add(){
+        //megnézem hogy most nyitotta meg a user az oldalt, vagy mr beküldi az adatot
+        ;
+        //input->get és input->post al letudom kérdezni a form tartalmát paraméterrel
+        if($this->input->post('submit')){
+            //input validáció
+            $this->load->library('form_validation');
+            //----validációs szabályok majd ide, setrules-al-----
+            //p1: mezőnév, p2: mező display címke, p3: validációs szabály neve
+            $this->form_validation->set_rules('name', 'Név', 'required');
+            $this->form_validation->set_rules('ssn', 'SSN', 'required');
+            $this->form_validation->set_rules('tin', 'TIN', 'required');
+
+            if($this->form_validation->run() == TRUE){
+                //ha sikeres a validáció, ide jutunk
+                //beszúrjuk a rekordot az adatbázisba (modell beli feladat)
+                if($this->employees_model->insert(
+                    $this->input->post('name'),
+                    $this->input->post('ssn'),
+                    $this->input->post('tin')
+                )){
+
+                }
+            }
+        }
+        
+        
         //kell egy regisztrációs form
         //név,ssn,tin
         $this->load->helper('form'); //form kezelő helper, duh

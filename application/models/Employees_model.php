@@ -42,4 +42,6 @@ class Employees_model extends CI_Model{
         //példányok listáját építi ez
         return $result;
     }
+
+    
 }
