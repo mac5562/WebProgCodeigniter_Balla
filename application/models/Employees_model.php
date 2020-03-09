@@ -25,10 +25,12 @@ class Employees_model extends CI_Model{
     public function get_list(){
         //megadom a lekérdezendő mezőket a db-ben
         $this->db->select('*');
+
         //aztán honnan kell ez,
         $this->db->from('employees');
         //opcionális mezők, pl WHERE feltételek., rendezés
         //$this->db->where();
+        
         $this->db->order_by('name', 'ASC'); //asc is redundant but whatever
         
         //megcsináljuk az előkészített lekérdezést
