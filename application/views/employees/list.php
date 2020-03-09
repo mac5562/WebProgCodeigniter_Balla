@@ -32,8 +32,7 @@ if($employees == NULL || empty($employees)): ?>
             <td>
                 <?php echo anchor(base_url('employees/edit/'.$emp->id), 'Szerkeszt')?>
                 <?php echo anchor(base_url('employees/delete/'.$emp->id), 'Töröl')?>
-            </td>
-            
+            </td>            
         </tr>
         <?php         endforeach; ?>
     </tbody>

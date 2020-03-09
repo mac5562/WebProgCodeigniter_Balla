@@ -41,7 +41,10 @@ class Employees extends CI_Controller{
     }
     
     public function add(){
-        echo "add";
+        //kell egy regisztrációs form
+        //név,ssn,tin
+        $this->load->helper('form'); //form kezelő helper, duh
+        $this->load->view('employees/add');
     }
     
     public function edit(){
