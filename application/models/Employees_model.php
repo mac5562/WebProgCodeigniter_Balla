@@ -43,5 +43,16 @@ class Employees_model extends CI_Model{
         return $result;
     }
 
-    
+    public function insert($name, $ssn, $tin){
+        //szervezzük az adatokat egy asszociatív tömbbe, ahol a kulcs értékek a db meők nevei, a hozzá
+        //tartozó értékek pedig a konkrét értékei a db-nek
+        $record = array(
+            'name' => $name,
+            'ssn' => $ssn,
+            'tin' => $tin
+        );
+        //hívjuk meg az insertet és adjuk vissza az értékét
+        $this->db->insert('employees', $record);
+
+    }
 }
