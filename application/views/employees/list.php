@@ -30,7 +30,7 @@ if($employees == NULL || empty($employees)): ?>
             <td><?=$emp->ssn?></td>
             <td><?=$emp->tin?></td>
             <td>
-                <?php echo anchor(base_url('employees/edit'.$emp->id), 'Szerkeszt')?>
+                <?php echo anchor(base_url('employees/edit/'.$emp->id), 'Szerkeszt')?>
                 <?php echo anchor(base_url('employees/delete/'.$emp->id), 'Töröl')?>
             </td>
             
