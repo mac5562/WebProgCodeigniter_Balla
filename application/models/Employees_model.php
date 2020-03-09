@@ -53,6 +53,13 @@ class Employees_model extends CI_Model{
         );
         //hívjuk meg az insertet és adjuk vissza az értékét
         $this->db->insert('employees', $record);
+    }
 
+    public function delete($id){
+        //paraméterből megnézem, hogy valós törlés E.
+        //lekérdezem, hogy van e ilyen id: ha igen, yay, ha nem, hiba :s
+
+        $this->db->where('id',$id);
+        return $this->db->delete('employees');
     }
 }
