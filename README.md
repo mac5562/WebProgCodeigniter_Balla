@@ -1,1 +1,5 @@
-WebProgCodeigniter02_24
+WebProg 3
+CodeIgniter keretrendszer
+Minden óra után (és közben is) fel van commitolva a projekt
+
+A kommentek kicsit sajátosak de asszem érthetőke :s
