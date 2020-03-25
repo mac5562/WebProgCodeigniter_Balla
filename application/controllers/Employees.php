@@ -77,9 +77,19 @@ class Employees extends CI_Controller{
         echo "edit";
     }
     
-    public function delete($id){
-        echo "delete".$id;
-        //ellenőrzöm, hogy jogosan töröl-e, és csak akkor törlöm. (jogosultság, kapcsolódó rekordok, stbb)
+    //paraméter nélkül is működnie kell
+    public function delete($id = NULL){
+        
+        if($id == NULL){
+            show_error('Hiányzó rekord azonosító');
+        }
+        
+        $record = $this->Employees_model->select_by_id($id);
+        
+        if($record == NULL){
+            show_error('Ilyen azonositoval nincs rekord');
+        }
+
         $this->load->helper('url');
         if($this->Employees_model->delete($id)){
             redirect(base_url('employees/list'));

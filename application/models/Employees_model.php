@@ -62,4 +62,15 @@ class Employees_model extends CI_Model{
         $this->db->where('id',$id);
         return $this->db->delete('employees');
     }
+
+    public function select_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('employees');
+        $this->db->where('id',$id);
+        
+        return $this->db->get()->row(); 
+        //azért ilyen (és nem $result), mert csak 1 sort ad vissza
+
+    }
 }
