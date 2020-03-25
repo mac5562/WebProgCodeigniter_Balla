@@ -28,6 +28,11 @@ class Employees extends CI_Controller{
     }
 
 
+
+
+
+
+
     public function list(){
         //echo "list";
         //van egy employees tábla
@@ -39,6 +44,11 @@ class Employees extends CI_Controller{
         $this->load->helper('url');
         $this->load->view('employees/list', $view_data);
     }
+
+
+
+
+
     
     public function add(){
         //megnézem hogy most nyitotta meg a user az oldalt, vagy mr beküldi az adatot
@@ -72,22 +82,68 @@ class Employees extends CI_Controller{
         $this->load->helper('form'); //form kezelő helper, duh
         $this->load->view('employees/add');
     }
+
+
+
+
+
+
     
-    public function edit(){
-        echo "edit";
+    public function edit($id = NULL){
+        if($id == NULL){
+            show_error('Missing ID for editing');
+        }
+
+        $record = $this->Employees_model->select_by_id($id);
+
+        if($record == NULL){
+            show_error('This record does not exist');
+        }
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'Név', 'required');
+        $this->form_validation->set_rules('ssn', 'SSN', 'required');
+        $this->form_validation->set_rules('tin', 'TIN', 'required');
+
+        if($this->form_validation->run() == TRUE){
+            //ha sikeres a validáció, ide jutunk
+            //beszúrjuk a rekordot az adatbázisba (modell beli feladat)
+            $this->Employees_model->update($id, 
+                                            $this->input->post('name'),
+                                            $this->input->post('tin'),
+                                            $this->input->post('ssn'));
+            $this->load->helper('url');
+            redirect(base_url('employees/list')); 
+        }
+        
+        else{
+
+            $view_params = ['emp' => $record];
+
+            $this->load->helper('form');
+            $this->load->view('employees/edit', $view_params);
+        }
     }
+
+        
     
+
+
+
+
+
+
     //paraméter nélkül is működnie kell
     public function delete($id = NULL){
         
         if($id == NULL){
-            show_error('Hiányzó rekord azonosító');
+            show_error('Record id missing');
         }
         
         $record = $this->Employees_model->select_by_id($id);
         
         if($record == NULL){
-            show_error('Ilyen azonositoval nincs rekord');
+            show_error('Record with this id does not exist');
         }
 
         $this->load->helper('url');
@@ -95,7 +151,7 @@ class Employees extends CI_Controller{
             redirect(base_url('employees/list'));
         }
         else{
-            show_error('A rekord törlése nem sikerült');
+            show_error('Deleting of record unsuccesful');
         }
     }
 }
