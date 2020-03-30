@@ -11,9 +11,11 @@
  *
  * @author akos4
  */
-class Employees_model extends CI_Model{
+class Employees_model extends CI_Model
+{
     //put your code here
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
         
         //database will be needed, SO:
@@ -22,7 +24,8 @@ class Employees_model extends CI_Model{
     }
 
 
-    public function get_list(){
+    public function get_list()
+    {
         //megadom a lekérdezendő mezőket a db-ben
         $this->db->select('*');
 
@@ -43,7 +46,8 @@ class Employees_model extends CI_Model{
         return $result;
     }
 
-    public function insert($name, $ssn, $tin){
+    public function insert($name, $ssn, $tin)
+    {
         //szervezzük az adatokat egy asszociatív tömbbe, ahol a kulcs értékek a db meők nevei, a hozzá
         //tartozó értékek pedig a konkrét értékei a db-nek
         $record = array(
@@ -55,11 +59,30 @@ class Employees_model extends CI_Model{
         $this->db->insert('employees', $record);
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         //paraméterből megnézem, hogy valós törlés E.
         //lekérdezem, hogy van e ilyen id: ha igen, yay, ha nem, hiba :s
 
         $this->db->where('id',$id);
         return $this->db->delete('employees');
+    }
+
+    public function select_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('employees');
+        $this->db->where('id',$id);
+        
+        return $this->db->get()->row(); 
+        //azért ilyen (és nem $result), mert csak 1 sort ad vissza
+
+    }
+
+    public function update($id, $name, $tin, $ssn)
+    {
+        $record=['name' => $name, 'tin' => $tin, 'ssn' => $ssn];
+        $this->db->where('id', $id);
+        $this->db->update('employees', $record);
     }
 }
