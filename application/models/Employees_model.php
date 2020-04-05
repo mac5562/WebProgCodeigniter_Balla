@@ -53,7 +53,7 @@ class Employees_model extends CI_Model
         $record = array(
             'name' => $name,
             'ssn' => $ssn,
-            'tin' => $tin
+            'tin' => $tin,
         );
         //hívjuk meg az insertet és adjuk vissza az értékét
         $this->db->insert('employees', $record);

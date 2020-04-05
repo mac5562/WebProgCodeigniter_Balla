@@ -10,23 +10,23 @@
                 # code...
             
                 //file validáció, egy konfigurációs asszociatív tömbön keresztül
-                $uploadConfig['allowed_types'] = 'jpg|png|gif';
-                $uploadConfig['max_size'] = 20000; //Kbyte-ban
+                $uploadConfig['allowed_types'] = 'jpg|png|jpeg';
+                $uploadConfig['max_size'] = 2300; //Kbyte-ban
                 
-                $uploadConfig['min_height'] = 500; //px-ben
-                $uploadConfig['max_height'] = 50000; //px-ben
+                $uploadConfig['min_height'] = 250; //px-ben
+                $uploadConfig['max_height'] = 5000; //px-ben
 
-                $uploadConfig['min_width'] = 500; //px-ben
-                $uploadConfig['max_width'] = 50000; //px-ben
+                $uploadConfig['min_width'] = 250; //px-ben
+                $uploadConfig['max_width'] = 5000; //px-ben
 
                 //stb stb
 
-                $uploadConfig['upload_path'] = './uploads/'; //feltöltött fájlok tárhelye
+                $uploadConfig['upload_path'] = './uploads/images/employees'; //feltöltött fájlok tárhelye
                 $uploadConfig['file_ext_tolower'] = TRUE; //kisbetűsre konvertálja a kiterjesztéseket
 
                 $uploadConfig['overwrite'] = TRUE; //engedi a felülírást feltöltéskor
 
-
+                
                 //Feltöltéskezelő
                 $this->load->library('upload');
                 
