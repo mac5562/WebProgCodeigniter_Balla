@@ -10,7 +10,7 @@
                 # code...
             
                 //file validáció, egy konfigurációs asszociatív tömbön keresztül
-                $uploadConfig['allowed_types'] = 'txt|jpg|png|gif';
+                $uploadConfig['allowed_types'] = 'jpg|png|gif';
                 $uploadConfig['max_size'] = 20000; //Kbyte-ban
                 
                 $uploadConfig['min_height'] = 500; //px-ben
@@ -33,22 +33,21 @@
                 $this->upload->initialize($uploadConfig);
 
                 if ($this->upload->do_upload('file') == TRUE) {
+                    $this->load->helper('url');
                     $viewParams = ['file' => $this->upload->data()];
                     $this->load->view('fileUpload/success', $viewParams);
                 }
                 else {
-                    $viewParams = ['error' => $this->upload->display_errors()];
+                    $viewParams = ['errors' => $this->upload->display_errors()];
                     $this->load->helper('form');
                     $this->load->view('fileUpload/form', $viewParams);
-                }
-
-                $this->load->helper('form');
-                $this->load->view('fileUpload/form', $viewParams);
+                }        
             }
             else {
                 $this->load->helper('form');
                 $this->load->view('fileUpload/form', ['error' => '']);
             }
         }
+        
     }
 ?>

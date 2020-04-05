@@ -1,4 +1,7 @@
-<?php echo $error; ?>
+
+<?php
+error_reporting(E_ERROR | E_WARNING | E_PARSE); ?>
+<?php echo $errors; ?>
 
 <?php echo form_open_multipart(); ?>
     

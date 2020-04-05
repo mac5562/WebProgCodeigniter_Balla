@@ -62,7 +62,6 @@ class Employees extends CI_Controller{
             $this->form_validation->set_rules('name', 'Név', 'required');
             $this->form_validation->set_rules('ssn', 'SSN', 'required');
             $this->form_validation->set_rules('tin', 'TIN', 'required');
-
             if($this->form_validation->run() == TRUE){
                 //ha sikeres a validáció, ide jutunk
                 //beszúrjuk a rekordot az adatbázisba (modell beli feladat)
