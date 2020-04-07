@@ -45,6 +45,24 @@ class Employees extends CI_Controller{
         $this->load->view('employees/list', $view_data);
     }
 
+    public function profile($id = NULL)
+    {
+        if($id == NULL){
+            show_error('No ID');
+        }
+
+        $record = $this->Employees_model->select_by_id($id);
+
+        if($record == NULL){
+            show_error('No record with this ID');
+        }
+
+        $view_params = ['emp' => $record];
+
+        $this->load->helper('form');
+        $this->load->view('employees/profile', $view_params);
+    }
+
 
 
 
@@ -62,7 +80,6 @@ class Employees extends CI_Controller{
             $this->form_validation->set_rules('name', 'Név', 'required');
             $this->form_validation->set_rules('ssn', 'SSN', 'required');
             $this->form_validation->set_rules('tin', 'TIN', 'required');
-
             if($this->form_validation->run() == TRUE){
                 //ha sikeres a validáció, ide jutunk
                 //beszúrjuk a rekordot az adatbázisba (modell beli feladat)
